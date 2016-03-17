@@ -15,3 +15,7 @@ def load_sheet(filename):
 
     return contents
 
+def get_plain_text():
+    plain_text = input('Please type your message ')
+    return plain_text.lower()
+
