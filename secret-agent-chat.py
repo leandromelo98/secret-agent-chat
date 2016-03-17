@@ -28,3 +28,12 @@ def save_file(filename, data):
     with open(filename, 'w') as f:
         f.write(data)
 
+def encrypt(plaintext, sheet):
+    ciphertext = ''
+    for position, character in enumerate(plaintext):
+        if character not in ALPHABET:
+            ciphertext += character
+        else:
+            encrypted = (ALPHABET.index(character) + int(sheet[position])) % 26
+            ciphertext += ALPHABET[encrypted]
+    return ciphertext
