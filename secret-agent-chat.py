@@ -1,4 +1,5 @@
 from random import randint
+
 ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
 
 
@@ -8,9 +9,8 @@ def generate_otp(sheets, length):
             for i in range(length):
                 f.write(str(randint(0, 26))+"\n")
 
-
 def load_sheet(filename):
-    with open(filename, "r") as f:
+    with open(filename, 'r') as f:
 
         contents = f.read().splitlines()
 
@@ -24,7 +24,7 @@ def get_plain_text():
 
 
 def load_file(filename):
-    with open(filename, "r") as f:
+    with open(filename, 'r') as f:
         contents = f.read()
     return contents
 
@@ -70,25 +70,25 @@ def menu():
             choice = input('Please type 1, 2, 3 or 4 and press Enter ')
             if choice == '1':
                 sheets = int(input('''How many one-time pads would
-                                    you like to generate? '''))
+you like to generate? '''))
                 length = int(input('''What will be your maximum message
-                                   length? '''))
+length? '''))
                 generate_otp(sheets, length)
             elif choice == '2':
                 filename = input('''Type in the filename of the OTP you want
-                                 to use ''')
+to use ''')
                 sheet = load_sheet(filename)
-                plaintext = get_plaintext()
+                plaintext = get_plain_text()
                 ciphertext = encrypt(plaintext, sheet)
                 filename = input('''What will be the name of the
-                                    encrypted file? ''')
+encrypted file? ''')
                 save_file(filename, ciphertext)
             elif choice == '3':
                 filename = input('''Type in the filename of the OTP you want
-                                    to use ''')
+to use ''')
                 sheet = load_sheet(filename)
                 filename = input('''Type in the name of the file to be
-                                    decrypted ''')
+decrypted ''')
                 ciphertext = load_file(filename)
                 plaintext = decrypt(ciphertext, sheet)
                 print('The message reads:')
